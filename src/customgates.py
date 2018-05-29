@@ -3,6 +3,51 @@ from projectq.ops import C, BasicMathGate,H, Z, X, Measure, All
 from projectq.meta import Loop, Compute, Uncompute, Control
 from projectq.backends._sim._simulator import Simulator
 
+class modular_increment_gate(BasicMathGate):
+    """
+    Takes two quantum registers as input 'modulus' and 'val'.
+    The gate returns the modulus register unchanged and adds +1 mod (modulus)
+    to the val register (in a way such that this addition is reversible)
+    The numbers in quantum registers are stored from low- to high-bit, i.e.,
+    qunum[0] is the LSB. 
+    """
+    def __init__(self):
+        """                                                                         
+        Initializes the gate to  its base class, BasicMathGate, with the 
+        corresponding function, so it can be emulated efficiently.
+        """
+        def mod(modulus,val):
+            if  modulus == 0 or val >= modulus:
+                return(modulus,val)
+            else:
+                if val+1 == modulus:
+                    return(modulus,0)
+                else:
+                    return(modulus,val+1)
+        BasicMathGate.__init__(self,mod)
+
+class modular_decrement_gate(BasicMathGate):
+    """
+    Takes two quantum registers as input 'modulus' and 'val'. 
+    The gate returns the modulus register unchanged and subtracts -1 mod (modulus)
+    from the val register (in a way such that this subtraction is reversible)
+    The numbers in quantum registers are stored from low- to high-bit, i.e.,
+    qunum[0] is the LSB.   
+    """
+    def __init__(self):
+        """
+        Initializes the gate to  its base class, BasicMathGate, with the
+        corresponding function, so it can be emulated efficiently. 
+        """
+        def mod(modulus,val):
+            if  modulus == 0 or val >= modulus:
+                return(modulus,val)
+            if val == 0:
+                return(modulus,modulus-1)
+            else:
+                return(modulus,val-1)
+        BasicMathGate.__init__(self,mod)
+
 class MultiplyModN(BasicMathGate):
     """
     Takes three quantum registers as input, 'exponent, 'modulus' and 'val'.
@@ -110,54 +155,6 @@ class InverseMultiplyModN(BasicMathGate):
         BasicMathGate.__init__(self,mod)
         self.a = a
 
-class modular_increment_gate(BasicMathGate):
-    """
-    Multiply a quantum number represented by a quantum register by a^b modulo N.
-    The number is stored from low- to high-bit, i.e., qunum[0] is the LSB.
-    """
-    def __init__(self):
-        """
-        Initializes the gate to the number to multiply with modulo N.
-        Args:
-            a (int): Number by which to multiply a quantum register
-                (0 <= a < N).
-            N (int): Number modulo which the multiplication is carried out.
-        It also initializes its base class, BasicMathGate, with the
-        corresponding function, so it can be emulated efficiently.
-        """
-        def mod(N,x):
-            if  N == 0 or x >= N:
-                return(N,x)
-            else:
-                if x+1 == N:
-                    return(N,0)
-                else:
-                    return(N,x+1)
-        BasicMathGate.__init__(self,mod)
-
-class modular_decrement_gate(BasicMathGate):
-    """
-    Multiply a quantum number represented by a quantum register by a^b modulo N.
-    The number is stored from low- to high-bit, i.e., qunum[0] is the LSB.
-    """
-    def __init__(self):
-        """
-        Initializes the gate to the number to multiply with modulo N.
-        Args:
-            a (int): Number by which to multiply a quantum register
-                (0 <= a < N).
-            N (int): Number modulo which the multiplication is carried out.
-        It also initializes its base class, BasicMathGate, with the
-        corresponding function, so it can be emulated efficiently.
-        """
-        def mod(N,x):
-            if  N == 0 or x >= N:
-                return(N,x)
-            if x == 0:
-                return(N,N-1)
-            else:
-                return(N,x-1)
-        BasicMathGate.__init__(self,mod)
 
 
 
