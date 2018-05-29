@@ -1,0 +1,17 @@
+atomicwrites==1.1.5
+attrs==18.1.0
+certifi==2018.4.16
+chardet==3.0.4
+future==0.16.0
+idna==2.6
+more-itertools==4.2.0
+numpy==1.14.3
+pluggy==0.6.0
+projectq==0.3.6
+py==1.5.3
+pybind11==2.2.3
+pytest==3.6.0
+requests==2.18.4
+scipy==1.1.0
+six==1.11.0
+urllib3==1.22
