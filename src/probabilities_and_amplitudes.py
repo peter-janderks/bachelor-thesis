@@ -8,7 +8,6 @@ def get_all_probabilities(eng,qureg):
        qubit_list = qubit_list[::-1]
        l = eng.backend.get_probability(qubit_list,qureg)
        if l != 0.0:
-#           qubit_list[::-1]
            print(l,qubit_list, i)
        i += 1
 
