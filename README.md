@@ -1,4 +1,4 @@
-Code for bachelor's thesis: Quantum Computation of Prime Counting Function
+Code for bachelor's thesis: Quantum Computation of the Prime Counting Function
 ==========================================================================
 The src folder contains the python code using ProjectQ's dsl.
 The Quirk folder contains the Quirk circuits used in the thesis.
