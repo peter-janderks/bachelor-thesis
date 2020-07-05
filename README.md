@@ -2,6 +2,7 @@ Code for bachelor's thesis: Quantum Computation of the Prime Counting Function
 ==========================================================================
 The src folder contains the python code using ProjectQ's dsl.
 The Quirk folder contains the Quirk circuits used in the thesis.
+The pdf file is the thesis.
 
 To run the files in the src repository ProjectQ needs to be installed. 
 I used a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) for this project.If pip is installed all the required packages can be installed by typing
