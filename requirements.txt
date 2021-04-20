@@ -8,7 +8,7 @@ more-itertools==4.2.0
 numpy==1.14.3
 pluggy==0.6.0
 projectq==0.3.6
-py==1.5.3
+py==1.10.0
 pybind11==2.2.3
 pytest==3.6.0
 requests==2.18.4
