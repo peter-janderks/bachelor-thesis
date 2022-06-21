@@ -5,7 +5,7 @@ chardet==3.0.4
 future==0.16.0
 idna==2.6
 more-itertools==4.2.0
-numpy==1.14.3
+numpy==1.22.0
 pluggy==0.6.0
 projectq==0.3.6
 py==1.5.3
